@@ -43,7 +43,10 @@ def main():
     """
     # тут явно нужен алгоритм
     max_pages = 10000000
-    print(calc_book_pages(max_pages))
+
+    last_page_num = calc_book_pages(max_pages)
+
+    print(last_page_num)
 
 
 if __name__ == '__main__':
