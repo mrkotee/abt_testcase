@@ -4,6 +4,26 @@ def black_box(page: int):
     else:
         return False
 
+
+def calc_book_pages(max_pages):
+    def get_page_num(page, max_pages, max_page=0, iteration=1):
+        iteration += 1
+
+        if black_box(page):
+            if page > max_page:
+                max_page = page
+            next_num = int(page + max_pages / (2 ** iteration))
+        else:
+            next_num = int(page - max_pages / (2 ** iteration))
+
+        if next_num == max_page:
+            return max_page
+
+        return get_page_num(next_num, max_pages, max_page, iteration)
+
+    return get_page_num(max_pages/2, max_pages)
+
+
 def main():
     """
     Вам дали книгу, конкретное количество страниц вам не сообщили,
@@ -22,6 +42,9 @@ def main():
     Важно: написать наиболее эффективный алгоритм (по числу итераций)
     """
     # тут явно нужен алгоритм
+    max_pages = 10000000
+    print(calc_book_pages(max_pages))
+
 
 if __name__ == '__main__':
     main()
